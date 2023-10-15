@@ -187,6 +187,10 @@ contract WalletNFT is ERC165, IERC721 {
         return (spender == _owner || isApprovedForAll(_owner, spender) || getApproved(tokenId) == spender);
     }
 
+    function mint(uint256 tokenId) public returns (uint256) {
+        _safeMint(msg.sender, tokenId);
+    }
+
     /**
      * @dev Safely mints `tokenId` and transfers it to `to`.
      *
