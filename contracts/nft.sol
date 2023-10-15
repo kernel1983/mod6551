@@ -7,6 +7,7 @@ import "./IERC721.sol";
 import "./IERC721Receiver.sol";
 import "./ERC165.sol";
 import "./Address.sol";
+import "./ierc20.sol";
 
 
 contract WalletNFT is ERC165, IERC721 {
@@ -368,6 +369,16 @@ contract WalletNFT is ERC165, IERC721 {
         } else {
             return true;
         }
+    }
+
+    function erc20_transfer(address erc20addr, address _to, uint256 _value, uint256 _from_tokenid, uint256 _to_tokenid) public {
+        IERC20 erc20 = IERC20(erc20addr);
+        erc20.transfer(_to, _value, _from_tokenid, _to_tokenid);
+    }
+
+    function erc20_transferFrom(address erc20addr, address _from, address _to, uint256 _value, uint256 _from_tokenid, uint256 _to_tokenid) public {
+        IERC20 erc20 = IERC20(erc20addr);
+        erc20.transferFrom(_from, _to, _value, _from_tokenid, _to_tokenid);
     }
 }
 
